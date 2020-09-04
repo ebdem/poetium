@@ -3,4 +3,8 @@
 
 
 
-##for start --node app.js--
+##for start
+##npm install 
+
+
+##--node app.js--
