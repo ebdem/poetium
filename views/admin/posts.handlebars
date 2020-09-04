@@ -1,0 +1,48 @@
+<div id="colorlib-main">
+    <section>
+        <h3 style="text-align: center; color: #EC5007; text-decoration: underline">POSTS</h3>
+        <div class="container">
+
+            {{> admin-nav}}
+
+            <div class="clearfix"></div>
+            <div class="mb-5"></div>
+            <div class="row">
+
+                <div class="col-md-12">
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th style="color: #0069d9">DELETE</th>
+                            <th style="color: #ba8b00">TITLE</th>
+                            <th style="color: peru">CATEGORY NAME</th>
+                            <th style="color: #0069d9">EDIT</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {{#each posts}}
+                            <tr>
+
+                                <td style="color: #EC0726">
+                                    <form action="/admin/posts/{{_id}}?_method=DELETE" method="POST">
+                                        <input type="hidden" name="_method" value="DELETE">
+                                        <button type="submit" class="btn btn-danger">DELETE</button>
+                                    </form>
+                                </td>
+                                <td style="color: #EC0726">{{title}}</td>
+                                <td style="color: #EC0726">{{kind}}</td>
+                                <td style="color: #EC0726">
+                                    <a class="btn btn-warning" href="/admin/posts/edit/{{_id}}">EDIT</a>
+                                </td>
+                            </tr>
+                        {{/each}}
+
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+
+        </div>
+    </section>
+</div>

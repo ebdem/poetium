@@ -1,0 +1,38 @@
+<div id="colorlib-main">
+    <section class="ftco-section ftco-no-pt ftco-no-pb">
+        <div class="container px-md-0">
+            <div class="row d-flex no-gutters">
+                <div class="col-lg-12 pb-5 single">
+                    <div class="row">
+                        <div class="img img-single" style="background-image: url({{ post.post_image }});"></div>
+                        <div class="px-5 mt-4">
+                            <span class="subheading">{{post.kind}}</span>
+                            <br>
+                            <i class="fas fa-clock"></i><span class="date subheading">{{ generateDate post.date 'MMM DD YYYY'}}</span>
+                            <h1 class="mb-3">{{ post.title }}</h1>
+
+
+                            <div class="col-md-6">
+                                <p>{{post.content}}</p>
+                            </div>
+
+
+
+                            <div class="about-author d-flex p-4">
+                                <div class="bio mr-5">
+                                    <img src="{{ post.auth_image }}" alt="Image placeholder" class="img-fluid mb-4">
+                                </div>
+                                <div class="desc">
+                                    <h3>{{  post.author.username }}</h3>
+
+                                    <p>{{ post.author_des }}</p>
+                                </div>
+                            </div>
+
+
+                           <!-- END-->
+                </div>
+            </div>
+        </div>
+    </section>
+</div>

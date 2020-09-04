@@ -1,0 +1,34 @@
+
+<div class="outer">
+<h1 id="not-found" style="color: #FFF; margin-left: 310px;">404 not found</h1>
+</div>
+
+
+<style>
+    .outer{
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+</style>
+    <script>
+
+        const notFoundText = document.getElementById("not-found")
+        const sidebarHideWidth = 1090
+        window.addEventListener("resize", function () {
+
+            const windowWidth = window.innerWidth
+                    || document.documentElement.clientWidth
+                    || document.body.clientWidth;
+
+            if (windowWidth < sidebarHideWidth){
+                notFoundText.style.marginLeft = "50px"
+            }else{
+                notFoundText.style.marginLeft = "310px"
+            }
+        })
+
+
+    </script>

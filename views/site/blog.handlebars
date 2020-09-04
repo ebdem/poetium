@@ -1,0 +1,68 @@
+{{> site-sidebar}}
+
+<div id="colorlib-main">
+
+    <button id="open-side-bar-button">Kategoriler</button>
+    <section class="ftco-section ftco-no-pt ftco-no-pb">
+        {{#if sessionFlash.message }}
+            <div class="{{sessionFlash.type}}" style="text-decoration-width: auto; color: darkgreen">
+                {{ sessionFlash.message }}
+            </div>
+        {{/if}}
+        <div class="container px-md-0">
+
+            {{#each posts}}
+            <div class="row d-flex no-gutters">
+                <div class="col-md-12 portfolio-wrap">
+                    <div class="row no-gutters align-items-center">
+                        <a href="{{post_image}}" class="col-md-6 img order-md-{{imagePosition}} image-popup js-fullheight d-flex align-items-center justify-content-center" style="background-image: url({{ post_image }});">
+                            <div class="icon d-flex align-items-center justify-content-center">
+                                <span class="fa fa-expand"></span>
+                            </div>
+                        </a>
+                        <div class="col-md-6">
+                            <div class="text pt-5 pl-0 px-lg-5 pl-md-4 ftco-animate">
+                                <div class="px-4 px-lg-4">
+                                    <div class="desc">
+                                        <div class="top">
+                                            <span class="subheading">{{kind}}</span>
+                                            <span class="subheading">{{auth}}</span>
+                                            <h2 class="mb-4"><a href="/blog"></a>{{ title }}</h2>
+                                            <i class="fas fa-clock"></i><span class="date subheading">{{ generateDate date 'MMM DD YYYY' }}</span>
+                                        </div>
+                                        <div class="absolute text-break">
+                                            <p>{{wrapText content}}</p>
+                                        </div>
+                                        <p><a href="/posts/{{ _id }}" class="custom-btn">Detaylı Gör</a></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            {{/each}}
+
+
+
+
+            </div>
+
+        </div>
+    </section>
+</div>
+
+<script>
+    const sideBar = document.getElementById("side-bar")
+    const mainDiv = document.getElementById("colorlib-main");
+    document.getElementById("open-side-bar-button").addEventListener("click", function (event){
+        event.preventDefault();
+        mainDiv.style.opacity = "0.1"
+        sideBar.style.width = "450px"
+    })
+    document.getElementById("close-button").addEventListener("click", function (event) {
+
+        sideBar.style.width = "0px"
+        mainDiv.style.opacity = "1"
+    })
+</script>

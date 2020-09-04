@@ -1,0 +1,85 @@
+<style>
+    #side-bar{
+        width: 0;
+        position: fixed;
+        top: 0;
+        right: 0;
+        height: 100vh;
+        background-color: #000000;
+        z-index: 999;
+        transition: 0.5s;
+        overflow: hidden;
+    }
+
+    #open-side-bar-button{
+
+        margin:15px;
+        width: 100px;
+        border-radius: 7px;
+        padding: 10px;
+        background-color: #d96500;
+        color: #FFF;
+        border: none;
+    }
+    #close-button{
+        position: absolute;
+        width: 40px;
+        height: 40px;
+        top: 10px;
+        right: 10px;
+        color: #FFF;
+        padding: 5px;
+        background-color: #d96500;
+        border-radius: 7px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border: none;
+    }
+    #sidebar-content{
+        margin-top: 100px;
+        padding: 10px 50px;
+    }
+    #kinds{
+        display: grid;
+        grid-template-columns: auto auto auto;
+        grid-gap: 30px;
+    }
+    .kind-link{
+        text-decoration: none;
+        color: #FFF;
+        font-size: 1.5rem;
+        line-height: 22px;
+        font-weight: lighter;
+        border: 1px solid #d96500;
+        padding: 10px;
+        border-radius: 7px;
+        background-color: #d96500;
+        text-transform: uppercase;
+
+    }
+    .kind-link:hover{
+        text-decoration: underline;
+        color: #FFF;
+        cursor: pointer !important;
+        background-color: #e3924d;
+    }
+
+
+</style>
+
+<div id="side-bar">
+    <div id="sidebar-content">
+
+    <button id="close-button">X</button>
+
+        <div id="kinds">
+            {{#each categories}}
+            <a class="kind-link" href="/blog?kind={{name}}">{{name}}<span class="badge badge-danger">({{num_of_posts}})</span></a>
+                {{/each}}
+
+            <a class="kind-link" href="/blog">Tümü</a>
+        </div>
+
+    </div>
+</div>
