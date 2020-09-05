@@ -62,7 +62,8 @@ router.get("/search", (req, res) =>{
                 })})
         })
     })
-}})
+}
+})
 
 router.get('/:id',async (req, res) =>{
 
