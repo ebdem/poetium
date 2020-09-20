@@ -3,7 +3,7 @@ const express = require('express');
 const exphbs = require('express-handlebars');
 const app = express();
 const port = 3000;
-const hostname = '127.0.0.1';
+const hostname = '0.0.0.0';
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser')
 const fileUpload = require('express-fileupload')
@@ -16,8 +16,11 @@ const connectMongo = require('connect-mongo')
 const methodOverride  = require('method-override')
 
 
+const {MONGO_DB_HOST, DATABASE_NAME,APP_SECRET} = process.env;
+const _CONNECTION_URL = `mongodb://${MONGO_DB_HOST}/${DATABASE_NAME}`;
 
-mongoose.connect('mongodb://127.0.0.1/nodeblog_db', {
+
+mongoose.connect(_CONNECTION_URL, {
     useNewUrlParser:true,
     useUnifiedTopology:true,
     useCreateIndex:true
@@ -27,7 +30,7 @@ const mongoStore = connectMongo(expressSession)
 
 
 app.use(expressSession({
-    secret:'naberknk',
+    secret: APP_SECRET,
     resave:false,
     saveUninitialized:true,
     store:new mongoStore({ mongooseConnection:mongoose.connection })
