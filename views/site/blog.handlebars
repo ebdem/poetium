@@ -1,3 +1,31 @@
+<style>
+    .pagination {
+        display: inline-block;
+
+    }
+
+    .pagination  a {
+        color: white;
+        float: left;
+
+        text-decoration: none;
+    }
+
+    .pagination a.active {
+        background-color: #e84809;
+        color: white;
+        border-radius: 5px;
+    }
+
+    .pagination a:hover:not(.active) {
+        background-color: #ddd;
+        border-radius: 5px;
+    }
+</style>
+
+
+
+
 {{> site-sidebar}}
 
 <div id="colorlib-main">
@@ -31,7 +59,7 @@
                                             <i class="fas fa-clock"></i><span class="date subheading">{{ generateDate date 'MMM DD YYYY' }}</span>
                                         </div>
                                         <div class="absolute text-break">
-                                            <p>{{wrapText content}}</p>
+                                            <p>{{{wrapText content}}}</p>
                                         </div>
                                         <p><a href="/posts/{{ _id }}" class="custom-btn">Detaylı Gör</a></p>
                                     </div>
@@ -50,6 +78,20 @@
 
         </div>
     </section>
+    <div style="text-decoration: none" class="pagination">
+        {{#pagination current=current pages=pages}}
+        {{/pagination}}
+    </div>
+
+
+
+<!--    <div class="pagination">-->
+<!--        <a href="#">&laquo;</a>-->
+<!--        <a href="#">1</a>-->
+<!--        <a href="#" class="active">2</a>-->
+<!--        <a href="#">3</a>-->
+<!--        <a href="#">&raquo;</a>-->
+<!--    </div>-->
 </div>
 
 <script>

@@ -2,33 +2,44 @@
     <section class="ftco-section ftco-no-pt ftco-no-pb">
         <div class="container px-md-0">
             <div class="row d-flex no-gutters">
-                <div class="col-lg-8 col-md-7 order-md-last d-flex align-items-stretch">
+                <div class="col-lg-8 col-md-6 order-md-last d-flex align-items-stretch">
                     <div class="contact-wrap w-100 p-md-5 p-4">
-                        <h3 class="mb-4 heading">Get in touch</h3>
-                        <form method="POST" id="contactForm" name="contactForm" class="contactForm">
+                        <h3 class="mb-4 heading">Hadi Mesajınızı Bekliyoruz..</h3>
+                        {{#if sessionFlash.message }}
+                            <div class="{{sessionFlash.type}}" style="text-decoration-width: auto; color: darkgreen">
+                                {{ sessionFlash.message }}
+                            </div>
+                        {{/if}}
+                        <form method="POST" action="/contact/email" id="contactForm" name="contactForm" class="contactForm">
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label class="label" for="name">Full Name</label>
-                                        <input type="text" class="form-control" name="name" id="name" placeholder="Name">
+                                        <label class="label" for="name">İsim Soyisim</label>
+                                        <input type="text" class="form-control" name="name" id="name" placeholder="İsim" required="required">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label class="label" for="email">Email Address</label>
-                                        <input type="email" class="form-control" name="email" id="email" placeholder="Email">
+                                        <label class="label" for="email">Email Adresi</label>
+                                        <input type="email" class="form-control" name="email" id="email" placeholder="Email" required="required">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="label" for="subject">Telefon</label>
+                                        <input type="number" class="form-control" name="phone" id="phone" placeholder="Telefon" >
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="label" for="subject">Konu</label>
+                                        <input type="text" class="form-control" name="subject" id="subject" placeholder="Konu" required="required">
                                     </div>
                                 </div>
                                 <div class="col-md-12">
                                     <div class="form-group">
-                                        <label class="label" for="subject">Subject</label>
-                                        <input type="text" class="form-control" name="subject" id="subject" placeholder="Subject">
-                                    </div>
-                                </div>
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <label class="label" for="#">Message</label>
-                                        <textarea name="message" class="form-control" id="message" cols="30" rows="4" placeholder="Message"></textarea>
+                                        <label class="label" for="#">Mesaj</label>
+                                        <textarea name="message" class="form-control" id="message" cols="30" rows="4" placeholder="Mesaj" required="required"></textarea>
                                     </div>
                                 </div>
                                 <div class="col-md-12">
@@ -41,24 +52,25 @@
                         </form>
                     </div>
                 </div>
-                <div class="col-lg-4 col-md-5 d-flex align-items-stretch">
+                <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
                     <div class="info-wrap js-fullheight bg-primary w-100 p-md-5 p-4">
-                        <h3>Let's get in touch</h3>
-                        <p class="mb-4">We're open for any suggestion or just to have a chat</p>
+                        <h3>Hadi Bizimle İletişime Geçin</h3>
+                        <p class="mb-4">Herhangi bir öneriye veya sadece sohbet etmeye açığız</p>
                         <div class="dbox w-100 d-flex align-items-start">
                             <div class="icon d-flex align-items-center justify-content-center">
                                 <span class="fa fa-map-marker"></span>
                             </div>
                             <div class="text pl-3">
-                                <p><span>Address:</span> 198 West 21th Street, Suite 721 New York NY 10016</p>
+                                <p><span>Adres:</span> Kocaeli-İzmit</p>
                             </div>
                         </div>
+
                         <div class="dbox w-100 d-flex align-items-center">
                             <div class="icon d-flex align-items-center justify-content-center">
-                                <span class="fa fa-phone"></span>
+                                <span class="fa fa-paper-plane"></span>
                             </div>
                             <div class="text pl-3">
-                                <p><span>Phone:</span> <a href="tel://1234567920">+ 1235 2355 98</a></p>
+                                <p><span>Email:</span> ebu.bekir.3333@gmail.com</p>
                             </div>
                         </div>
                         <div class="dbox w-100 d-flex align-items-center">
@@ -66,7 +78,7 @@
                                 <span class="fa fa-paper-plane"></span>
                             </div>
                             <div class="text pl-3">
-                                <p><span>Email:</span> <a href="mailto:info@yoursite.com">info@yoursite.com</a></p>
+                                <p><span>Email:</span> hilaluykusuzz@gmail.com</p>
                             </div>
                         </div>
                         <div class="dbox w-100 d-flex align-items-center">
@@ -74,7 +86,7 @@
                                 <span class="fa fa-globe"></span>
                             </div>
                             <div class="text pl-3">
-                                <p><span>Website</span> <a href="#">yoursite.com</a></p>
+                                <p><span>Website</span> <a href="#">poetium.com</a></p>
                             </div>
                         </div>
                     </div>

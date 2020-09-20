@@ -14,12 +14,12 @@
     }
 
     button:hover {
-        opacity:1;
+        opacity: 1;
     }
 
     /* Float cancel and delete buttons and add an equal width */
     .cancelbtn, .deletebtn {
-        float: left;
+        border-radius: 8px;
         width: 50%;
     }
 
@@ -27,11 +27,18 @@
     .cancelbtn {
         background-color: #ccc;
         color: black;
+        width: 200px;
+        padding: 20px;
+        margin: 30px;
+
     }
 
     /* Add a color to the delete button */
     .deletebtn {
         background-color: #f44336;
+        width: 200px;
+        padding: 20px;
+        margin: 30px;
     }
 
     /* Add padding and center-align text to the container */
@@ -85,8 +92,6 @@
     }
 
 
-
-
     /* Change styles for cancel button and delete button on extra small screens */
     @media screen and (max-width: 300px) {
         .cancelbtn, .deletebtn {
@@ -94,7 +99,6 @@
         }
     }
 </style>
-
 
 
 <div id="colorlib-main">
@@ -125,28 +129,40 @@
                                 <td style="color: #EC0726">
 
 
-                                        <button onclick="document.getElementById('id01').style.display='block'" type="submit" class="btn btn-danger">DELETE</button>
-                                    <div  id="id01" class="modal">
-                                        <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">×</span>
-                                        <form class="modal-content"  action="/admin/posts/{{_id}}?_method=DELETE" method="POST">
+                                    <button onclick="openDeleteModal(this)" postId={{_id}} postTitle='{{title}}' name="_method"
+                                            type="submit" class="btn btn-danger">DELETE
+                                    </button>
+                                    <div id="id01" class="modal">
+                                        <span onclick="document.getElementById('id01').style.display='none'"
+                                              class="close" title="Close Modal">×</span>
 
 
-                                            <div class="container">
-                                                <h1>Delete Account</h1>
-                                                <p style="color: #f3c623">Are you sure you want to delete your posts?</p>
+                                        <div class="container">
+                                            <form id="modalForm" class="modal-content" action=""
+                                                  method="POST">
+                                                <h1>DELETE POST!!!!</h1>
+                                                <p style="color: #f3c623">Are you sure you want to delete your
+                                                    post</p><span id="modalPostTitle"></span>
 
                                                 <div class="clearfix">
-                                                    <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>
+                                                    <button type="button"
+                                                            onclick="document.getElementById('id01').style.display='none'"
+                                                            class="cancelbtn">Cancel
+                                                    </button>
                                                     <input type="hidden" name="_method" value="DELETE">
-                                                    <button type="submit" onclick="document.getElementById('id01').style.display='none'" class="deletebtn">Delete</button>
+                                                    <button type="submit"
+                                                            onclick="document.getElementById('id01').style.display='none'"
+                                                            class="deletebtn">Delete
+                                                    </button>
                                                 </div>
-                                            </div>
-                                        </form>
+                                            </form>
+                                        </div>
+
                                     </div>
 
                                 </td>
-                                <td style="color: #EC0726">{{title}}</td>
-                                <td style="color: #EC0726">{{kind}}</td>
+                                <td style="color: #ecd507">{{title}}</td>
+                                <td style="color: #f1f1f1">{{kind}}</td>
                                 <td style="color: #EC0726">
                                     <a class="btn btn-warning" href="/admin/posts/edit/{{_id}}">EDIT</a>
                                 </td>
@@ -168,9 +184,20 @@
     var modal = document.getElementById('id01');
 
     // When the user clicks anywhere outside of the modal, close it
-    window.onclick = function(event) {
+    window.onclick = function (event) {
         if (event.target == modal) {
             modal.style.display = "none";
         }
     }
+
+    function openDeleteModal(elem){
+        const postId = elem.getAttribute("postId");
+        const postTitle = elem.getAttribute("postTitle").toUpperCase();
+
+        document.getElementById("modalPostTitle").innerText = postTitle;
+        document.getElementById("modalForm").setAttribute("action", `/admin/posts/${postId}?_method=DELETE`);
+        document.getElementById('id01').style.display='block'
+    }
+
+
 </script>

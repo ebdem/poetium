@@ -10,6 +10,7 @@ const fileUpload = require('express-fileupload')
 const generateDate = require('./helpers/generateDate').generateDate
 const limit = require('./helpers/limit').limit
 const wrapText = require("./helpers/wrapText").wrapText
+const pagination = require('./helpers/pagination').pagination
 const expressSession = require('express-session')
 const connectMongo = require('connect-mongo')
 const methodOverride  = require('method-override')
@@ -47,7 +48,9 @@ const hbs = exphbs.create({
     helpers: {
         generateDate:generateDate,
         limit:limit,
-        wrapText:wrapText
+        wrapText:wrapText,
+        pagination:pagination
+
     }
 })
 
@@ -86,11 +89,14 @@ const main = require('./routers/main')
 const posts = require('./routers/posts')
 const users = require('./routers/users')
 const admin = require('./routers/admin/index')
+const contact = require('./routers/contact')
+
 
 app.use('/',main)
 app.use('/posts',posts)
 app.use('/users',users)
 app.use('/admin',admin)
+app.use('/contact',contact)
 
 
 app.listen(port, hostname, () => {

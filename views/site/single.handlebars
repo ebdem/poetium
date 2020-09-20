@@ -3,17 +3,19 @@
         <div class="container px-md-0">
             <div class="row d-flex no-gutters">
                 <div class="col-lg-12 pb-5 single">
+
                     <div class="row">
                         <div class="img img-single" style="background-image: url({{ post.post_image }});"></div>
                         <div class="px-5 mt-4">
                             <span class="subheading">{{post.kind}}</span>
                             <br>
-                            <i class="fas fa-clock"></i><span class="date subheading">{{ generateDate post.date 'MMM DD YYYY'}}</span>
+                            <i class="fas fa-clock"></i><span class="date subheading">{{ generateDate post.date
+                                                                                                      'MMM DD YYYY'}}</span>
                             <h1 class="mb-3">{{ post.title }}</h1>
 
-
-                            <div class="col-md-6">
-                                <p>{{post.content}}</p>
+                            <div id="toolbar-container"></div>
+                            <div class="col-md-12">
+                                <p>{{{post.content }}}</p>
                             </div>
 
 
@@ -30,9 +32,24 @@
                             </div>
 
 
-                           <!-- END-->
+                        </div>        <!-- END-->
+                    </div>
                 </div>
             </div>
-        </div>
     </section>
 </div>
+<!--<script src="https://cdn.ckeditor.com/4.15.0/standard/ckeditor.js"></script>-->
+<!--<script>-->
+<!--    CKEDITOR.replace( 'editor' );-->
+<!--</script>-->
+<script>
+    CKEDITOR.editorConfig = function( config ) {
+        config.entities_latin = false;
+        config.entities_greek = false;
+        config.entities = false;
+        config.basicEntities = false;
+    };
+</script>
+
+
+

@@ -5,18 +5,23 @@
         <h1 id="colorlib-logo" class="mb-4 mb-md-5"><a href="/" style="background-image: url(/images/bg_1.jpg);">Poetium</a></h1>
         <nav id="colorlib-main-menu" role="navigation">
             <ul>
-                <li class="colorlib-active"><a href="/">Home</a></li>
+                <li><a href="/">Anasayfa</a></li>
                 <li><a href="/blog">Blog</a></li>
                 {{#if displayLink}}
                         <li><a href="/posts/new">Add Post</a></li>
+
                 {{/if}}
-                <li><a href="/admin">Admin</a></li>
+
+                {{#if displayLink}}
+                    <li><a href="/admin">Admin</a></li>
+                    {{/if}}
+
 <!-- <li><a href="/about">About</a></li>-->
 
-                <li><a href="/contact">Contact</a></li>
+                <li><a href="/contact">İletişim</a></li>
                 {{#unless displayLink}}
                      <li><a href="/users/login">Log In</a></li>
-                     <li><a href="/users/register">Register</a></li>
+<!--                     <li><a href="/users/register">Register</a></li>-->
                 {{/unless}}
                 {{#if displayLink}}
                     <li><a href="/users/logout">Log Out</a></li>
@@ -26,8 +31,8 @@
         <div class="topnav">
             <div class="search-container">
                 <form class="form-inline" action="/posts/search" method="GET">
-                    <input style="width: 190px" class="form-control" type="text" placeholder="Search.." name="search">
-                    <button style="border-radius: 10px;border:none;padding: 8px;margin: 8px" class="btn btn-outline-dark" type="submit"><i class="fa fa-search"></i></button>
+                    <input style="width: 190px" class="form-control" type="text" placeholder="Blog Ara" name="search">
+                    <button style="border-radius: 10px;border:none;" class="btn btn-outline-dark" type="submit"><i class="fa fa-search"></i></button>
                 </form>
             </div>
         </div>

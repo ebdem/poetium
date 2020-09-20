@@ -6,7 +6,12 @@ const path = require('path')
 
 
 router.get('/',(req, res) => {
-    res.render('admin/index')
+    if (req.session.userId) {
+        return res.render('admin/index')
+
+    }
+    res.redirect('/users/login')
+
 })
 
 router.get('/categories',(req, res) => {

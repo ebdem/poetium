@@ -27,40 +27,54 @@ router.get('/contact',(req, res) =>{
 
 router.get('/blog',(req, res) =>{
     const {kind} = req.query;
+    const postPerPage = 3;
+    const page = req.query.page || 1
 
-    Post.find({...(kind && {kind})}).sort({$natural:-1}).then(posts => {
+    Post.find({...(kind && {kind})})
+        .sort({$natural:-1})
+        .skip((postPerPage * page) - postPerPage)
+        .limit(postPerPage)
+        .then(posts => {
 
-        Category.aggregate([
-            {
-                '$lookup': {
-                    'from': 'posts',
-                    'localField': 'name',
-                    'foreignField': 'kind',
-                    'as': 'posts'
-                }
-            }, {
-                '$project': {
-                    '_id': 0,
-                    'name': 1,
-                    'num_of_posts': {
-                        '$size': '$posts'
+            Post.countDocuments().then(postCount => {
+                Category.aggregate([
+                    {
+                        '$lookup': {
+                            'from': 'posts',
+                            'localField': 'name',
+                            'foreignField': 'kind',
+                            'as': 'posts'
+                        }
+                    }, {
+                        '$project': {
+                            '_id': 0,
+                            'name': 1,
+                            'num_of_posts': {
+                                '$size': '$posts'
+                            }
+                        }
+                    }, {
+                        '$sort': {
+                            'num_of_posts': -1
+                        }
                     }
-                }
-            }, {
-                '$sort': {
-                    'num_of_posts': -1
-                }
-            }
-        ]).then(categories => {
+                ]).then(categories => {
 
-            res.render('site/blog', {posts: posts.map((post,index) => {
-                    const temp = post.toObject();
-                    temp.imagePosition = index % 2 === 0 ? "last": "first";
-                    return temp
-                }),categories:categories.map((categories) =>{
-                    return categories
-                })})
-        })
+                    res.render('site/blog', {posts: posts.map((post,index) => {
+                            const temp = post.toObject();
+                            temp.imagePosition = index % 2 === 0 ? "last": "first";
+                            return temp
+                        }),categories:categories.map((categories) =>{
+                            return categories
+                        }),
+                        current:parseInt(page),
+                        pages:Math.ceil(postCount/postPerPage)
+                    })
+                })
+
+            })
+
+
     })
 
 

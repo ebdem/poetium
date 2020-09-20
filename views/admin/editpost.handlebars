@@ -25,7 +25,7 @@
         <div class="col-md-12">
             <div class="form-group">
                 <label for="message">Content</label>
-                <textarea name="content" id="content" cols="20" rows="5" class="form-control" required="true">{{post.content}}</textarea>
+                <textarea name="content" id="editor" cols="20" rows="5" class="form-control" required="true">{{{post.content}}}</textarea>
             </div>
         </div>
 
@@ -55,4 +55,15 @@
 
     </div>
 </form>
+
+<script src="https://cdn.ckeditor.com/4.15.0/standard/ckeditor.js"></script>
+<script>
+    CKEDITOR.replace( 'editor' );
+    CKEDITOR.editorConfig = function( config ) {
+        config.entities_latin = false;
+        config.entities_greek = false;
+        config.entities = false;
+        config.basicEntities = false;
+    };
+</script>
 

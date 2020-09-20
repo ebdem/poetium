@@ -55,7 +55,7 @@ router.get("/search", (req, res) =>{
             ]).then(categories => {
             res.render('site/blog', {posts: posts.map((post,index) => {
                     const temp = post.toObject();
-                    temp.imagePosition = index % 2 === 0 ? "last": "first";
+                    temp.imagePosition = index % 2 === 0 ? "last": "";
                     return temp
                 }),categories:categories.map((categories) =>{
                     return categories
